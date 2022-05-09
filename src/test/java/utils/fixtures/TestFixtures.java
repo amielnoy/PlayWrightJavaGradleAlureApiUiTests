@@ -6,13 +6,11 @@ import com.microsoft.playwright.*;
 import org.junit.jupiter.api.*;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class TestFixtures extends APIFixtures {
+public class TestFixtures extends ConduitAPI {
 
     // Shared between all tests in the class.
     public Playwright playwright;
     public Browser browser;
-    public APIFixtures apiFixtures;
-    public APIRequestContext request;
 
     @BeforeAll
     void launchBrowser() {
@@ -20,15 +18,11 @@ public class TestFixtures extends APIFixtures {
         browser = playwright.chromium().launch(new BrowserType.LaunchOptions() // or firefox, webkit
                 .setHeadless(false)
                 .setSlowMo(100));
-        apiFixtures = new APIFixtures();
-        apiFixtures.createAPIRequestContext(playwright);
-        request = apiFixtures.getRequest();
     }
 
     @AfterAll
     void closeBrowser() {
         playwright.close();
-        apiFixtures.disposeAPIRequestContext();
     }
 
 

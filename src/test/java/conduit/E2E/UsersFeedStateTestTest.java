@@ -1,4 +1,4 @@
-package conduit;
+package conduit.E2E;
 
 import POM.HomePage;
 import org.junit.jupiter.api.Test;

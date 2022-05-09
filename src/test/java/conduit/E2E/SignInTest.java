@@ -1,4 +1,4 @@
-package conduit;
+package conduit.E2E;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 
