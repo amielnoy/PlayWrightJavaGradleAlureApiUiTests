@@ -36,3 +36,4 @@ tmp/
 *.log
 
 appState.json
+.DS_Store
