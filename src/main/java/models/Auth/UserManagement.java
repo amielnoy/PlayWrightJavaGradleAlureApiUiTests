@@ -1,9 +1,9 @@
-package users;
+package models.Auth;
 
-public class UsersManagement {
+public class UserManagement {
     private User user;
 
-    public UsersManagement(User user) {
+    public UserManagement(User user) {
         this.user = user;
     }
 

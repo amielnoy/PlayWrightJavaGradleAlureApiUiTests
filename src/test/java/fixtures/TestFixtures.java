@@ -5,11 +5,10 @@ import com.microsoft.playwright.*;
 
 import org.junit.jupiter.api.*;
 import utils.BrowserManager;
-import utils.ConfigManager;
 import utils.Enums.BrowserTypeEnum;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class TestFixtures {
+public class TestFixtures extends APIFixtures {
 
     // Shared between all tests in the class.
     public Playwright playwright;

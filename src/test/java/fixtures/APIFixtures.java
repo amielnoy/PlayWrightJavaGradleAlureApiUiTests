@@ -6,11 +6,13 @@ import com.microsoft.playwright.Playwright;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.TestInstance;
+import utils.config.IConfig;
+
 import java.util.HashMap;
 import java.util.Map;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class ConduitAPI {
+public class APIFixtures implements IConfig {
 
     private Playwright playwright;
     private APIRequestContext request;
@@ -30,7 +32,7 @@ public class ConduitAPI {
 
         this.request = playwright.request().newContext(new APIRequest.NewContextOptions()
                 // All requests we send go to this API endpoint.
-                .setBaseURL("https://conduit.productionready.io")
+                .setBaseURL(API_SERVER)
                 .setExtraHTTPHeaders(headers));
     }
 

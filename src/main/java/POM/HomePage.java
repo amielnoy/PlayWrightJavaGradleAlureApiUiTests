@@ -7,6 +7,7 @@ public class HomePage extends BasePage {
 	public final Locator signInLink;
 	public final Locator signUpLink;
 	public final Locator userProfileLink;
+	public final Locator newPOSTLink;
 	final static String pageUrl = BaseURL;
 
 	public HomePage(Page page) {
@@ -14,5 +15,6 @@ public class HomePage extends BasePage {
 		this.signInLink = page.locator("[href='/login']");
 		this.signUpLink = page.locator("[href='/register']");
 		this.userProfileLink = page.locator(".user-pic");
+		this.newPOSTLink = page.locator(".ion-compose");
 	}	
 }

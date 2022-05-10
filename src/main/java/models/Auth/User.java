@@ -1,4 +1,4 @@
-package users;
+package models.Auth;
 
 public class User {
     private String email;

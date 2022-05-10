@@ -16,11 +16,4 @@ public class SignInTest extends TestFixtures {
         new SignInPage(page).navigate().signIn(email, password);
         assertThat(new HomePage(page).userProfileLink).isVisible();
     }
-
-    @ParameterizedTest
-    @CsvSource({"interview2@start.com,password"})
-    void shouldNotSignIn(String email, String password) {
-        new SignInPage(page).navigate().signIn(email, password);
-        assertThat(new HomePage(page).userProfileLink).not().isVisible();
-    }
 }

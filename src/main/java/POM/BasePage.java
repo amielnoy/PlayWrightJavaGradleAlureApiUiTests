@@ -1,10 +1,11 @@
 package POM;
 
 import com.microsoft.playwright.Page;
-import utils.ConfigManager;
+import utils.config.ConfigManager;
+import utils.config.IConfig;
 
-public class BasePage {
-	protected final static String BaseURL = ConfigManager.ConfigLauncher().getProperty("app.baseUrl");
+public class BasePage implements IConfig {
+	protected final static String BaseURL = APP_URL;
 	protected final Page page;
 	protected final String pageUrl;
 	

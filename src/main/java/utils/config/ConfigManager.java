@@ -1,4 +1,4 @@
-package utils;
+package utils.config;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -9,7 +9,6 @@ import java.util.Properties;
 public class ConfigManager {
     private static ConfigManager configInstance = null;
     private Properties appProps;
-
     private ConfigManager() {
         String appConfigPath = "app.config";
 
@@ -37,4 +36,5 @@ public class ConfigManager {
     public String getProperty(String key){
         return appProps.getProperty(key);
     }
+
 }
