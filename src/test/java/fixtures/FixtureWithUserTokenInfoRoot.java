@@ -23,9 +23,9 @@ public class FixtureWithUserTokenInfoRoot extends TestFixtures implements IConfi
     @BeforeEach
     void createContextAndPage() {
         if (localStorage == null) {
-            String EMAIL = "interview@start.com";
-            String PASSWORD = "interview@start.com";
-            UserManagement userManagement1 = new UserManagement(new User(EMAIL, PASSWORD));
+            String email = "interview@start.com";
+            String password = "password";
+            UserManagement userManagement1 = new UserManagement(new User(email, password));
             APIResponse newIssue = getRequest().post("/api/users/login",
                     RequestOptions.create().setData(userManagement1));
             UserManagement json = new Gson().fromJson(newIssue.text(), UserManagement.class);
