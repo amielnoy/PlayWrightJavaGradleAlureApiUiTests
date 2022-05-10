@@ -13,7 +13,7 @@ public class UserService {
     public static final String AUTH_LOGIN_ENDPOINT = "/api/users/login";
 
     public User createNewRandomUser(APIRequestContext request) {
-        User newUser = new UserService().getRandomUser();
+        User newUser = new UserService().generateRandomUserDetails();
         UserManagement userManagement1 = new UserManagement(newUser);
         APIResponse createUser = request.post(CREATE_USER_ENDPOINT,
                 RequestOptions.create().setData(userManagement1));
@@ -22,7 +22,7 @@ public class UserService {
         return userManagement.getUser();
     }
 
-    public User getRandomUser() {
+    public User generateRandomUserDetails() {
         String randomString = new StringUtils().generateRandomAlphanumeric(10);
         String email = randomString + "@test.com";
         String password = "password";
