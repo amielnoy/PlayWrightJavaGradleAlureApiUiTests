@@ -1,12 +1,15 @@
-package utils.fixtures;
+package fixtures;
 
 import POM.HomePage;
 import com.microsoft.playwright.*;
 
 import org.junit.jupiter.api.*;
+import utils.BrowserManager;
+import utils.ConfigManager;
+import utils.Enums.BrowserTypeEnum;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class TestFixtures extends ConduitAPI {
+public class TestFixtures {
 
     // Shared between all tests in the class.
     public Playwright playwright;
@@ -15,9 +18,8 @@ public class TestFixtures extends ConduitAPI {
     @BeforeAll
     void launchBrowser() {
         playwright = Playwright.create();
-        browser = playwright.chromium().launch(new BrowserType.LaunchOptions() // or firefox, webkit
-                .setHeadless(false)
-                .setSlowMo(100));
+        BrowserManager browserManager = new BrowserManager();
+        browser = browserManager.launchBrowser(playwright, BrowserTypeEnum.CHROMIUM, false, 10);
     }
 
     @AfterAll

@@ -1,4 +1,4 @@
-package conduit.E2E;
+package conduitTests.E2E;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 
@@ -6,7 +6,7 @@ import POM.HomePage;
 import POM.SignInPage;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import utils.fixtures.TestFixtures;
+import fixtures.TestFixtures;
 
 public class SignInTest extends TestFixtures {
 

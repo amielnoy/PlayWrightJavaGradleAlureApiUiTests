@@ -34,3 +34,5 @@ tmp/
 
 # Log files
 *.log
+
+appState.json

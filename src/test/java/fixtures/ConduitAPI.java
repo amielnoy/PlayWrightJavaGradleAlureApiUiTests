@@ -1,4 +1,4 @@
-package utils.fixtures;
+package fixtures;
 
 import com.microsoft.playwright.APIRequest;
 import com.microsoft.playwright.APIRequestContext;
