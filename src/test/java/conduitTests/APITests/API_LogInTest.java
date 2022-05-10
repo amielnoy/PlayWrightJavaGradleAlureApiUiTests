@@ -10,10 +10,9 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import fixtures.APIFixtures;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static services.Auth.UserService.AUTH_LOGIN_ENDPOINT;
 
 public class API_LogInTest extends APIFixtures {
-
-    static final String AUTH_LOGIN_ENDPOINT = "/api/users/login";
 
     @ParameterizedTest
     @CsvSource({"invalid@start.com,invalid", "invalid@a.com,abcxyz"})
