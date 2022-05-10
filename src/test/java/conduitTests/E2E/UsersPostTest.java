@@ -11,14 +11,14 @@ public class UsersPostTest extends FixtureWithUserTokenInfoRoot {
 
     @Test
     @DisplayName("User is displayed with new post link")
-    void UserIsDisplayedWithNewPostLink() {
+    void userIsDisplayedWithNewPostLink() {
         HomePage homePage = new HomePage(page).navigate();
         assertThat(homePage.newPOSTLink).isVisible();
     }
 
     @Test
     @DisplayName("User can create a new post")
-    void UserPostDisplaysPublishArticleButton() {
+    void createNewPost() {
         HomePage homePage = new HomePage(page).navigate();
         // Implement here
 
