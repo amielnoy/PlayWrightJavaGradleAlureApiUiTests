@@ -38,7 +38,7 @@ public class UserService {
     public User createNewRandomUser(APIRequestContext request) throws Exception {
         User newUser = new UserService().generateRandomUserDetails();
         APIResponse createUserResponse = createUser(request, newUser);
-        System.out.println("USER IS: \n" + createUserResponse.text());
+        System.out.println("New user is created. User is: \n" + createUserResponse.text());
         if (createUserResponse.ok()){
             UserManagement userManagement = new Gson().fromJson(createUserResponse.text(), UserManagement.class);
             return userManagement.getUser();

@@ -19,6 +19,7 @@ public class FixtureWithUserTokenInfoRoot extends TestFixtures implements IConfi
 
     @Override
     @BeforeEach
+    // This method creates a new user and use the auth token to view the singed in state
     void createContextAndPage() {
         if (localStorage == null) {
             try {

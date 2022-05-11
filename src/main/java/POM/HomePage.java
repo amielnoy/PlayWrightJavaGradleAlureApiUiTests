@@ -16,5 +16,5 @@ public class HomePage extends BasePage {
 		this.signUpLink = page.locator("[href='/register']");
 		this.userProfileLink = page.locator(".user-pic");
 		this.newPOSTLink = page.locator(".ion-compose");
-	}	
+	}
 }
