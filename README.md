@@ -1,7 +1,7 @@
 # Test Automation repo (JAVA)
 
 ## Status 
-![CI Pipeline](https://github.com/mayank1004/github/workflows/maven.yml/badge.svg)
+![CI Pipeline](https://github.com/mayank1004/JavaE2E/actions/workflows/maven.yml/badge.svg)
 
 ## Tools used:
 ### Playwright
