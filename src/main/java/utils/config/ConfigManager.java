@@ -12,6 +12,7 @@ public class ConfigManager {
     private ConfigManager() {
         String appConfigPath;
         if (System.getenv("TEST_ENV") == "CI"){
+            System.out.println("I am inside CI");
             appConfigPath = "app.ci.config";
         } else {
             appConfigPath = "app.config";
