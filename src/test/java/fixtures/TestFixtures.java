@@ -18,7 +18,7 @@ public class TestFixtures extends APIFixtures {
     void launchBrowser() {
         playwright = Playwright.create();
         BrowserManager browserManager = new BrowserManager();
-        browser = browserManager.launchBrowser(playwright, BrowserTypeEnum.CHROMIUM, false, 10);
+        browser = browserManager.launchBrowser(playwright, BrowserTypeEnum.CHROMIUM, true, 10);
     }
 
     @AfterAll
