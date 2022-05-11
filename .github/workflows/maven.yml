@@ -27,4 +27,4 @@ jobs:
     - name: Run test with Maven
       run: mvn clean test
       env:
-        TEST_ENV: "CI"
+        TEST_ENV: CI
