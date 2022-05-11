@@ -3,6 +3,7 @@ package services.Auth;
 import com.google.gson.Gson;
 import com.microsoft.playwright.APIRequestContext;
 import com.microsoft.playwright.APIResponse;
+import com.microsoft.playwright.Response;
 import com.microsoft.playwright.options.RequestOptions;
 import models.Auth.User;
 import models.Auth.UserManagement;
@@ -12,14 +13,22 @@ public class UserService {
     public static final String CREATE_USER_ENDPOINT = "/api/users";
     public static final String AUTH_LOGIN_ENDPOINT = "/api/users/login";
 
-    public User createNewRandomUser(APIRequestContext request) {
-        User newUser = new UserService().generateRandomUserDetails();
-        UserManagement userManagement1 = new UserManagement(newUser);
-        APIResponse createUser = request.post(CREATE_USER_ENDPOINT,
+    public APIResponse createUser(APIRequestContext request, User user){
+        UserManagement userManagement1 = new UserManagement(user);
+        return request.post(CREATE_USER_ENDPOINT,
                 RequestOptions.create().setData(userManagement1));
-        System.out.println("USER IS: \n" + createUser.text());
-        UserManagement userManagement = new Gson().fromJson(createUser.text(), UserManagement.class);
-        return userManagement.getUser();
+    }
+
+    public User createNewRandomUser(APIRequestContext request) throws Exception {
+        User newUser = new UserService().generateRandomUserDetails();
+        APIResponse createUserResponse = createUser(request, newUser);
+        System.out.println("USER IS: \n" + createUserResponse.text());
+        if (createUserResponse.ok()){
+            UserManagement userManagement = new Gson().fromJson(createUserResponse.text(), UserManagement.class);
+            return userManagement.getUser();
+        } else {
+            throw new Exception("Fail to create user");
+        }
     }
 
     public User generateRandomUserDetails() {

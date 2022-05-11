@@ -12,12 +12,17 @@ public class FixtureWithUserTokenInfoRoot extends TestFixtures implements IConfi
     // This fixture logs in with new User
     private String localStorage;
 
+    @Override
     @BeforeEach
     void createContextAndPage() {
         if (localStorage == null) {
-            User newUser = new UserService().createNewRandomUser(getRequest());
-            String token = newUser.getToken();
-            localStorage = getState(token);
+            try {
+                User newUser = new UserService().createNewRandomUser(getRequest());
+                String token = newUser.getToken();
+                localStorage = getState(token);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         }
         context = browser.newContext(new Browser.NewContextOptions().setStorageState(localStorage));
         page = context.newPage();
