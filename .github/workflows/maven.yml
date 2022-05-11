@@ -9,6 +9,9 @@ on:
   pull_request:
     branches: [ main ]
 
+env:
+  TEST_CONDUIT_ENV: CI
+
 jobs:
   build:
 
@@ -26,5 +29,3 @@ jobs:
       run: mvn -B package --file pom.xml -DskipTests
     - name: Run test with Maven
       run: mvn clean test
-      env:
-        TEST_CONDUIT_ENV: 'CI'
