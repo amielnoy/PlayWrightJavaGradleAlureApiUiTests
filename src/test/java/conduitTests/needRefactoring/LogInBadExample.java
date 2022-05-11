@@ -23,4 +23,22 @@ public class LogInBadExample {
         context.close();
         playwright.close();
     }
+
+    @Test
+    void UserFailToLoginTest(){
+        Playwright playwright = Playwright.create();
+        Browser browser = playwright.firefox().launch(new BrowserType.LaunchOptions() // or firefox, webkit
+                .setHeadless(false)
+                .setSlowMo(50));
+        BrowserContext context = browser.newContext();
+        Page page = context.newPage();
+        page.navigate("https://superlative-fox-61a6f8.netlify.app");
+        page.locator("[href='/login']").click();
+        page.locator("input").first().type("invalid@s.com");
+        page.locator("input").nth(1).type("invalid");
+        page.locator("button").click();
+        assertThat(page.locator("[type=\"submit\"]")).isVisible();
+        context.close();
+        playwright.close();
+    }
 }

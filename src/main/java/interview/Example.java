@@ -16,7 +16,7 @@ public class Example {
 		API spec: https://github.com/gothinkster/realworld/blob/main/api/Conduit.postman_collection.json
 		User Details: email/pwd is interview@start.com/password
 
-		4. User can favorite the article
+		4. Validate user can favorite the article and is displayed in favourite
 		UI flow -> login -> click on global Feed -> favourite one or more articles ->
 		click on the user profile pic to navigate to articles -> click on favourite articles
 
