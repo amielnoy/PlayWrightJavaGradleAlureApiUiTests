@@ -3,7 +3,6 @@ package services.Auth;
 import com.google.gson.Gson;
 import com.microsoft.playwright.APIRequestContext;
 import com.microsoft.playwright.APIResponse;
-import com.microsoft.playwright.Response;
 import com.microsoft.playwright.options.RequestOptions;
 import models.Auth.User;
 import models.Auth.UserManagement;
