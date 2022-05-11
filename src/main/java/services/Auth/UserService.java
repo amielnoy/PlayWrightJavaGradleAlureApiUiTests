@@ -11,12 +11,29 @@ import utils.StringUtils;
 
 public class UserService {
     public static final String CREATE_USER_ENDPOINT = "/api/users";
+    public static final String CURRENT_USER_ENDPOINT = "/api/user";
     public static final String AUTH_LOGIN_ENDPOINT = "/api/users/login";
 
-    public APIResponse createUser(APIRequestContext request, User user){
+    public APIResponse createUser(APIRequestContext request, User user /*users req fields are email, password and username*/){
         UserManagement userManagement1 = new UserManagement(user);
         return request.post(CREATE_USER_ENDPOINT,
                 RequestOptions.create().setData(userManagement1));
+    }
+
+    public APIResponse logInUser(APIRequestContext request, User user){
+        return request.post(AUTH_LOGIN_ENDPOINT,
+                RequestOptions.create().setData(new UserManagement(user)));
+    }
+
+    public String getAuthToken(APIRequestContext request, User user){
+        APIResponse response = request.post(AUTH_LOGIN_ENDPOINT,
+                RequestOptions.create().setData(new UserManagement(user)));
+        return new Gson().fromJson(response.text(), UserManagement.class).getUser().getToken();
+    }
+
+    public APIResponse getCurrentUser(APIRequestContext request, String token){
+        return request.get(CURRENT_USER_ENDPOINT,
+                RequestOptions.create().setHeader("Authorization", "Token "+token));
     }
 
     public User createNewRandomUser(APIRequestContext request) throws Exception {

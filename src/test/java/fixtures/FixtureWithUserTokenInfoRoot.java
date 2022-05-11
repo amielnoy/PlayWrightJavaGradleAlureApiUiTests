@@ -10,7 +10,12 @@ import utils.config.IConfig;
 public class FixtureWithUserTokenInfoRoot extends TestFixtures implements IConfig {
 
     // This fixture logs in with new User
+    private String token;
     private String localStorage;
+
+    public String getToken() {
+        return token;
+    }
 
     @Override
     @BeforeEach
@@ -18,7 +23,7 @@ public class FixtureWithUserTokenInfoRoot extends TestFixtures implements IConfi
         if (localStorage == null) {
             try {
                 User newUser = new UserService().createNewRandomUser(getRequest());
-                String token = newUser.getToken();
+                token = newUser.getToken();
                 localStorage = getState(token);
             } catch (Exception e) {
                 throw new RuntimeException(e);

@@ -21,7 +21,6 @@ public class SignInPage extends BasePage {
 		PasswordInput.type(password);
 		SignInButton.click();
 	}
-	
 
 	@Override
 	public SignInPage navigate() {
