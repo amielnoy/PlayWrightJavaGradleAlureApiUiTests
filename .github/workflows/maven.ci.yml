@@ -26,3 +26,5 @@ jobs:
       run: mvn -B package --file pom.xml
     - name: Run test with Maven
       run: mvn clean test
+      env:
+        TEST_ENV: "CI"

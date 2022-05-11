@@ -10,7 +10,12 @@ public class ConfigManager {
     private static ConfigManager configInstance = null;
     private Properties appProps;
     private ConfigManager() {
-        String appConfigPath = "app.config";
+        String appConfigPath;
+        if (System.getenv("TEST_ENV") == "CI"){
+            appConfigPath = "app.ci.config";
+        } else {
+            appConfigPath = "app.config";
+        }
 
         appProps = new Properties();
         try {

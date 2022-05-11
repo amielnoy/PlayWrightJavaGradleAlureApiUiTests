@@ -6,9 +6,10 @@ import com.microsoft.playwright.*;
 import org.junit.jupiter.api.*;
 import utils.BrowserManager;
 import utils.Enums.BrowserTypeEnum;
+import utils.config.IConfig;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class TestFixtures extends APIFixtures {
+public class TestFixtures extends APIFixtures implements IConfig {
 
     // Shared between all tests in the class.
     public Playwright playwright;
@@ -18,7 +19,7 @@ public class TestFixtures extends APIFixtures {
     void launchBrowser() {
         playwright = Playwright.create();
         BrowserManager browserManager = new BrowserManager();
-        browser = browserManager.launchBrowser(playwright, BrowserTypeEnum.CHROMIUM, true, 10);
+        browser = browserManager.launchBrowser(playwright, BrowserTypeEnum.CHROMIUM, HEADLESS_BROWSER == "true", 10);
     }
 
     @AfterAll
