@@ -1,5 +1,8 @@
 # Test Automation repo (JAVA)
 
+## Status 
+![CI Pipeline](https://github.com/mayank1004/github/workflows/maven.yml/badge.svg)
+
 ## Tools used:
 ### Playwright
 It is a framework for Web Testing and Automation.
