@@ -1,7 +1,7 @@
 # This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
 # For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
 
-name: Java CI with Maven
+name: Conduit App test with JAVA
 
 on:
   push:
@@ -23,8 +23,8 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven
-      run: mvn -B package --file pom.xml
+      run: mvn -B package --file pom.xml -DskipTests
     - name: Run test with Maven
-      run: mvn clean test
+      run: mvn test
       env:
-        TEST_ENV: CI
+        TEST_CONDUIT_ENV: CI

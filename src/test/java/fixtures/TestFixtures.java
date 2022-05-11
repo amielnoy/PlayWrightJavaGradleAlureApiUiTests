@@ -19,6 +19,7 @@ public class TestFixtures extends APIFixtures implements IConfig {
     void launchBrowser() {
         playwright = Playwright.create();
         BrowserManager browserManager = new BrowserManager();
+        System.out.println("Value of headless:"+Boolean.valueOf(HEADLESS_BROWSER)+":");
         browser = browserManager.launchBrowser(playwright, BrowserTypeEnum.CHROMIUM, Boolean.valueOf(HEADLESS_BROWSER), 10);
     }
 

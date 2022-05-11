@@ -11,7 +11,8 @@ public class ConfigManager {
     private Properties appProps;
     private ConfigManager() {
         String appConfigPath;
-        if (System.getenv("TEST_ENV") == "CI"){
+        final String test_env = System.getenv("TEST_CONDUIT_ENV");
+        if (test_env != null && test_env.equals("CI")){
             appConfigPath = "app.ci.config";
         } else {
             appConfigPath = "app.config";
