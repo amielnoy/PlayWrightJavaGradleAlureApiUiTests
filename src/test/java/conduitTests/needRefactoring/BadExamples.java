@@ -1,6 +1,7 @@
 package conduitTests.needRefactoring;
 
 import com.microsoft.playwright.*;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
@@ -15,6 +16,7 @@ public class BadExamples {
     static Page page;
 
     @Test
+    @DisplayName("Users logs in")
     void logInTest() {
         playwright = Playwright.create();
 
@@ -40,6 +42,7 @@ public class BadExamples {
     }
 
     @Test
+    @DisplayName("Users favourite articles")
     void checkMyFavoriteArticle(){
         page.locator("[href=\"/@John Doeee\"]").click();
         page.locator("[href=\"/@John Doeee/favorites\"]").click();

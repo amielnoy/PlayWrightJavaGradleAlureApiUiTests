@@ -1,15 +1,22 @@
 package conduitTests.APITests;
 
 import com.microsoft.playwright.APIResponse;
+import com.microsoft.playwright.options.RequestOptions;
 import models.Auth.User;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import fixtures.APIFixtures;
-import services.Auth.UserService;
+import services.auth.UserService;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class API_LogInTest extends APIFixtures {
+
+    // Check the other way of making the request
     @ParameterizedTest
     @CsvSource({"invalid@start.com,invalid,403", "interview@start.com,password,200"})
     @DisplayName("Sign in API validation")
@@ -17,13 +24,30 @@ public class API_LogInTest extends APIFixtures {
         APIResponse loginResponse = new UserService().logInUser(getRequest(), new User(email, password));
         assertEquals(loginResponse.status(), responseCode);
     }
+    //OR if you don't want to build Model class
+    @ParameterizedTest
+    @CsvSource({"invalid@start.com,invalid,403", "interview@start.com,password,200"})
+    @DisplayName("Sign in API validation")
+    void signInAPI_2(String email, String password, int responseCode) {
+        // request body: {"user":{"email":"{{EMAIL}}", "password":"{{PASSWORD}}"}}
+        Map<String, String> user = new HashMap<>();
+        user.put("email", email);
+        user.put("password", password);
+        Map<String, Map> requestBody = new HashMap<>();
+        requestBody.put("user", user);
+
+        APIResponse loginResponse = getRequest().post(UserService.AUTH_LOGIN_ENDPOINT,
+                RequestOptions.create().setData(requestBody));
+        assertEquals(loginResponse.status(), responseCode);
+    }
 
     @ParameterizedTest
-    @CsvSource({"interview@start.com,password"})
+    @CsvSource({"interview@start.com,password", "IR6G77KHV1@test.com,password"})
     @DisplayName("Get current user API test - happy path")
     void currentUser(String email, String password) {
         String token = new UserService().getAuthToken(getRequest(), new User(email, password));
         APIResponse getCurrentUserResponse = new UserService().getCurrentUser(getRequest(), token);
+        System.out.println(getCurrentUserResponse.text());
         assertEquals(getCurrentUserResponse.status(), 200);
     }
 }

@@ -1,4 +1,4 @@
-package services.Auth;
+package services.auth;
 
 import com.google.gson.Gson;
 import com.microsoft.playwright.APIRequestContext;
@@ -12,6 +12,10 @@ public class UserService {
     public static final String CREATE_USER_ENDPOINT = "/api/users";
     public static final String CURRENT_USER_ENDPOINT = "/api/user";
     public static final String AUTH_LOGIN_ENDPOINT = "/api/users/login";
+
+    //Default user
+    public static final String DEFAULT_EMAIL = "interview@start.com";
+    public static final String DEFAULT_PASSWORD = "password";
 
     public APIResponse createUser(APIRequestContext request, User user /*users req fields are email, password and username*/){
         UserManagement userManagement1 = new UserManagement(user);
@@ -27,6 +31,12 @@ public class UserService {
     public String getAuthToken(APIRequestContext request, User user){
         APIResponse response = request.post(AUTH_LOGIN_ENDPOINT,
                 RequestOptions.create().setData(new UserManagement(user)));
+        return new Gson().fromJson(response.text(), UserManagement.class).getUser().getToken();
+    }
+
+    public String getAuthToken(APIRequestContext request){
+        APIResponse response = request.post(AUTH_LOGIN_ENDPOINT,
+                RequestOptions.create().setData(new UserManagement(new User(DEFAULT_EMAIL, DEFAULT_PASSWORD))));
         return new Gson().fromJson(response.text(), UserManagement.class).getUser().getToken();
     }
 
@@ -51,9 +61,8 @@ public class UserService {
         String randomString = new StringUtils().generateRandomAlphanumeric(10);
         String email = randomString + "@test.com";
         String password = "password";
-        String userName = randomString;
         models.Auth.User newUser = new models.Auth.User(email, password);
-        newUser.setUsername(userName);
+        newUser.setUsername(randomString);
         return newUser;
     }
 }

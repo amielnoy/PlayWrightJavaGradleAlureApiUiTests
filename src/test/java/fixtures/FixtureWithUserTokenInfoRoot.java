@@ -3,7 +3,7 @@ package fixtures;
 import com.microsoft.playwright.*;
 import org.junit.jupiter.api.*;
 import models.Auth.User;
-import services.Auth.UserService;
+import services.auth.UserService;
 import utils.config.IConfig;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
