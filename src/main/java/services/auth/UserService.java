@@ -7,15 +7,12 @@ import com.microsoft.playwright.options.RequestOptions;
 import models.Auth.User;
 import models.Auth.UserManagement;
 import utils.StringUtils;
+import utils.config.IUsersConfig;
 
-public class UserService {
+public class UserService implements IUsersConfig {
     public static final String CREATE_USER_ENDPOINT = "/api/users";
     public static final String CURRENT_USER_ENDPOINT = "/api/user";
     public static final String AUTH_LOGIN_ENDPOINT = "/api/users/login";
-
-    //Default user
-    public static final String DEFAULT_EMAIL = "interview@start.com";
-    public static final String DEFAULT_PASSWORD = "password";
 
     public APIResponse createUser(APIRequestContext request, User user /*users req fields are email, password and username*/){
         UserManagement userManagement1 = new UserManagement(user);
@@ -36,7 +33,7 @@ public class UserService {
 
     public String getAuthToken(APIRequestContext request){
         APIResponse response = request.post(AUTH_LOGIN_ENDPOINT,
-                RequestOptions.create().setData(new UserManagement(new User(DEFAULT_EMAIL, DEFAULT_PASSWORD))));
+                RequestOptions.create().setData(new UserManagement(new User(TEST_USER_NAME, TEST_PASSWORD))));
         return new Gson().fromJson(response.text(), UserManagement.class).getUser().getToken();
     }
 
