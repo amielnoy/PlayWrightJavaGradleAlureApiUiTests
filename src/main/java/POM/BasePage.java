@@ -1,7 +1,6 @@
 package POM;
 
 import com.microsoft.playwright.Page;
-import utils.config.ConfigManager;
 import utils.config.IConfig;
 
 public class BasePage implements IConfig {
