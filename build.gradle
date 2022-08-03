@@ -25,15 +25,26 @@ group = 'com.tandemdiabetes'
 version = '0.0.1-SNAPSHOT'
 description = 'Flixter'
 java.sourceCompatibility = JavaVersion.VERSION_11
+//To run the class name from command line using gradle run
 
-tasks.withType(JavaCompile) {
-    options.encoding = 'UTF-8'
-}
+
+
+//To create a runnable jar  in GradleJavaProject\build\libs then java -jar GradleJavaProject.jar
+//jar {
+//    manifest {
+//        attributes 'Main-Class': 'com.microsoft.playwright.CLI'
+//    }
+//}
+
+
+//tasks.withType(JavaCompile) {
+//    options.encoding = 'UTF-8'
+//}
 
 
 def allureVersion = '2.18.1'
-def junit5Version = "5.8.2"
-
+def junit5Version = "5.9.0"
+def mainClassName = 'com.microsoft.playwright.CLI'
 compileJava.options.encoding = "UTF-8"
 compileTestJava.options.encoding = "UTF-8"
 
@@ -41,7 +52,7 @@ compileTestJava.options.encoding = "UTF-8"
         autoconfigure = true
         aspectjweaver = true
         version = allureVersion
-
+        configuration = "testImplementation"
         clean = true
 
         useJUnit5 {
@@ -64,9 +75,15 @@ dependencies {
 
     //testImplementation("org.junit.jupiter:junit-jupiter-api:$junit5Version")
     //testImplementation("org.junit.jupiter:junit-jupiter-engine:$junit5Version")
-    //testImplementation("org.junit.jupiter:junit-jupiter-params:$junit5Version")
+    testImplementation("org.junit.jupiter:junit-jupiter-params:$junit5Version")
 }
-
+//Alternatively you can run it as a task too gradle -q  runWithJavaExec
+task runWithJavaExec(type: JavaExec) {
+    group = "Execution"
+    description = "Run the main class with JavaExecTask"
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'com.microsoft.playwright.CLI'
+}
 task webTests(type: Test) {
     test {
         useJUnitPlatform()
@@ -76,6 +93,9 @@ task webTests(type: Test) {
     systemProperty("junit.jupiter.extensions.autodetection.enabled", "true")
     //maxParallelForks = (Runtime.getRuntime().availableProcessors() / 2).takeIf { it > 0 } ?: 1
 }
+
+apply plugin: "application"
+
 
 
 
